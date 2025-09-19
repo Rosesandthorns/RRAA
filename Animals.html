@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animals - Rosie's Reptiles and Amphibians (RRAA)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Rosie's Reptiles And Amphibians</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="Animals.html">Animals</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Our Animals</h2>
+            <p>A look into the lives of the creatures in our care.</p>
+        </section>
+
+        <section class="animal-profile">
+            <h3>NomNom the Cranwell’s Horned Frog</h3>
+            <div class="animal-details">
+                <p><strong>Species & Morph:</strong> Cranwell’s Horned Frog (Ceratophrys cranwelli), albino morph</p>
+                <p><strong>Nickname:</strong> NomNom</p>
+                <p><strong>Age Estimate:</strong> <span id="age-estimate"></span></p>
+                <p><strong>Size:</strong> Comparable to a moderately large meatball</p>
+                <p><strong>Coloration:</strong> Yellow</p>
+                
+                <h4>Diet & Feeding Behavior:</h4>
+                <ul>
+                    <li><strong>Appetite:</strong> ~3–4 large crickets per day.</li>
+                    <li><strong>Acceptance of other prey items:</strong> mostly unsuccessful.</li>
+                    <li><strong>Feeding style:</strong> Not yet accepting tong feeding; prefers free-roaming crickets.</li>
+                </ul>
+
+                <h4>Behavioral Notes:</h4>
+                <ul>
+                    <li>Shy temperament, not trusting of human presence yet.</li>
+                    <li>Burrowing is minimal; instead, utilizes a plastic hide with live moss.</li>
+                    <li>Excavated a hole beneath the moss hide, using it as a daily shelter.</li>
+                    <li>Emergence occurs predictably between 18:00–20:00 for hunting.</li>
+                    <li>Returns to shelter sometime between 03:30–06:00 each morning.</li>
+                    <li>This cycle repeats daily, suggesting strong circadian rhythm and site fidelity.</li>
+                </ul>
+            </div>
+            <button onclick="window.location.href='daily-notes.html'">Daily Notes</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Rosie's Reptiles And Amphibians. &copy; 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set the estimated start date for the animal's age (e.g., ~2.5 months ago)
+            const birthDate = new Date();
+            birthDate.setMonth(birthDate.getMonth() - 2);
+            birthDate.setDate(birthDate.getDate() - 15); // Adjust for the half-month
+
+            function updateAge() {
+                const now = new Date();
+                const diffInMilliseconds = now - birthDate;
+
+                const diffInMonths = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24 * 30.44));
+                const remainingDays = Math.floor((diffInMilliseconds % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+
+                let ageString = "";
+                if (diffInMonths > 0) {
+                    ageString += `${diffInMonths} month${diffInMonths > 1 ? 's' : ''}`;
+                }
+                if (remainingDays > 0) {
+                    if (diffInMonths > 0) {
+                        ageString += " and ";
+                    }
+                    ageString += `${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+                }
+                
+                document.getElementById('age-estimate').textContent = `${ageString}`;
+            }
+
+            updateAge();
+            setInterval(updateAge, 1000 * 60 * 60 * 24); // Update once a day
+        });
+    </script>
+
+</body>
+</html>
